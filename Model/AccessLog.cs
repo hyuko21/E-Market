@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-    public class AccessLog
+    public class AccessLog : IIdentify
     {
         public int Id { get; set; }
         public int UserId { get; set; }
