@@ -8,5 +8,26 @@ namespace Persistence
 {
     public class User
     {
+        private static readonly string file = "content\\users.json";
+
+        public List<Model.User> Select()
+        {
+            return File<Model.User>.Select(file);
+        }
+
+        public void Insert(Model.User u)
+        {
+            File<Model.User>.Insert(file, u);
+        }
+
+        public void Update(Model.User u)
+        {
+            File<Model.User>.Update(file, u);
+        }
+
+        public void Delete(Model.User u)
+        {
+            File<Model.User>.Delete(file, u);
+        }
     }
 }
