@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{8FDA2DC9-4805-4DC0-850D-C3BE232FB8C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{4ED79355-8B51-4809-BD82-37B6ECB54534}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{29055E92-78A3-47D9-88A5-A27C171B945D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C800F3DD-5119-4DA3-A104-928F0D0C9657} = {C800F3DD-5119-4DA3-A104-928F0D0C9657}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{C800F3DD-5119-4DA3-A104-928F0D0C9657}"
 EndProject

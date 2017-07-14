@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-    public class Storage
+    class Warehouse
     {
         private List<Product> products;
     }
