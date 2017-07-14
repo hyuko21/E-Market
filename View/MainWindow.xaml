@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="E-Market" Height="350" Width="525">
     <Grid>
-        
+        <Button Width="100" Content="login" Height="50" Click="Button_Click"/>
     </Grid>
 </Window>

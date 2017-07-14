@@ -23,5 +23,11 @@ namespace View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.ShowDialog();
+        }
     }
 }
