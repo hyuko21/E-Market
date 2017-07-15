@@ -69,34 +69,24 @@ namespace View
 
         }
 
-        private void CancelBtn_MouseEnter(object sender, MouseEventArgs e)
+        private void CancelBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
             CancelBtn.Background = Brushes.Red;
         }
 
-        private void CancelBtn_MouseLeave(object sender, MouseEventArgs e)
+        private void CancelBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             CancelBtn.Background = Brushes.IndianRed;
         }
 
-        private void CancelBtn_OnClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void RegisterBtn_MouseEnter(object sender, MouseEventArgs e)
+        private void RegisterBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
             RegisterBtn.Background = Brushes.DeepSkyBlue;
         }
 
-        private void RegisterBtn_MouseLeave(object sender, MouseEventArgs e)
+        private void RegisterBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             RegisterBtn.Background = Brushes.CornflowerBlue;
-        }
-
-        private void RegisterBtn_OnClick(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

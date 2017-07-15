@@ -66,15 +66,10 @@ namespace View
 
         private void EnterBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void EnterBtn_MouseEnter(object sender, MouseEventArgs e)
-        {
             EnterBtn.Background = Brushes.DeepSkyBlue;
         }
 
-        private void EnterBtn_MouseLeave(object sender, MouseEventArgs e)
+        private void EnterBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             EnterBtn.Background = Brushes.CornflowerBlue;
         }
