@@ -9,32 +9,30 @@ namespace Business
 {
     public static class Security
     {
-        private static readonly string PasswordHash = "P@@Sw0rd";
-        private static readonly string SaltKey = "S@LT&KEY";
-        private static readonly string VIKey = "@1B2c3D4e5F6g7H8";
-
-        public static string Encrypt(string plainText)
+        public static string Encrypt(string text)
         {
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            StringBuilder bodyBuilder;
 
-            byte[] keyBytes = new Rfc2898DeriveBytes(PasswordHash, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);
-            var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.Zeros };
-            var encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(VIKey));
-
-            byte[] cipherTextBytes;
-
-            using (var memoryStream = new MemoryStream())
+            using (MD5 md5Hash = MD5.Create())
             {
-                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(text));
+
+                bodyBuilder = new StringBuilder();
+
+                for(int i = 0; i < data.Length; i++)
                 {
-                    cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-                    cryptoStream.FlushFinalBlock();
-                    cipherTextBytes = memoryStream.ToArray();
-                    cryptoStream.Close();
+                    bodyBuilder.Append(data[i].ToString("x2"));
                 }
-                memoryStream.Close();
             }
-            return Convert.ToBase64String(cipherTextBytes);
+            return bodyBuilder.ToString();
+        }
+
+        public static bool VerifyInput(string thisInput, string xInput)
+        {
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+            if (comparer.Compare(Encrypt(thisInput), xInput) == 0) return true;
+            return false;
         }
     }
 }
