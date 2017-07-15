@@ -8,7 +8,7 @@ namespace Persistence
 {
     public class AccessLog
     {
-        private static readonly string file = "accesslog.txt";
+        private static readonly string file = "access.log";
 
         public List<Model.AccessLog> Select()
         {

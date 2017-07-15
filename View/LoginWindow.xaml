@@ -26,10 +26,10 @@
         <Label Grid.Row="2" Content="Senha :" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="20 10 0 0" FontSize="14" Cursor="Arrow"/>
         <PasswordBox Name="password_txt" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" Margin="20 10 20 0" Padding="2 0 0 0" FontSize="14" Height="25" BorderBrush="LightGray" BorderThickness="2" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus"/>
         <Label Grid.Row="3" Content="Lembre-me" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="20 0 0 0"/>
-        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 4 0 0"/>
-        <Button Grid.Row="3" Grid.Column="2" Width="100" Height="25" Content="Entrar" HorizontalAlignment="Center"/>
-        <TextBlock Name="forgotPass_txt" Grid.Row="4" Grid.Column="2" Text="Esqueceu sua senha?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="RoyalBlue" Margin="0 10 0 0" Cursor="Hand" MouseEnter="Forgot_Pass_MouseEnter" MouseLeave="Forgot_Pass_MouseLeave"/>
-        <TextBlock Name="newAccount_txt" Grid.Row="5" Grid.Column="2" Text="Não é cadastrado ainda?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Foreground="RoyalBlue" Margin="0 10 0 0" Cursor="Hand" MouseEnter="New_Account_MouseEnter" MouseLeave="New_Account_MouseLeave"/>
+        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 2 0 0" Checked="RemindMe_Checked"/>
+        <TextBlock Name="EnterBtn" Grid.Row="3" Grid.Column="2" Width="120" Height="30" Text="Entrar" Padding="5" TextAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonDown="EnterBtn_OnClick" Background="CornflowerBlue" Foreground="White" FontSize="14" MouseEnter="EnterBtn_MouseEnter" MouseLeave="EnterBtn_MouseLeave"/>
+        <TextBlock Name="forgotPass_txt" Grid.Row="4" Grid.Column="2" Text="Esqueceu a senha?" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="RoyalBlue" Margin="0 10 0 0" Cursor="Hand" MouseEnter="Forgot_Pass_MouseEnter" MouseLeave="Forgot_Pass_MouseLeave" MouseLeftButtonDown="ForgotPass_OnClick"/>
+        <TextBlock Name="newAccount_txt" Grid.Row="5" Grid.Column="2" Text="Não é cadastrado?" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="RoyalBlue" Margin="0 10 0 0" Cursor="Hand" MouseEnter="New_Account_MouseEnter" MouseLeave="New_Account_MouseLeave" MouseLeftButtonDown="NewAccount_OnClick"/>
         <Rectangle Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Top" Fill="Black" Width="300" Height="1" Margin="20 20 20 0"/>
         <Label Grid.Row="6" Grid.ColumnSpan="2" Content="© E-Market 2017. All Rights Reserved." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="12" Foreground="DimGray" Cursor="Arrow"/>
     </Grid>
