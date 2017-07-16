@@ -76,7 +76,8 @@ namespace View
 
         private void NewAccount_OnClick(object sender, MouseButtonEventArgs e)
         {
-
+            RegisterWindow rw = new RegisterWindow();
+            rw.ShowDialog();
         }
 
         private void ForgotPass_OnClick(object sender, MouseButtonEventArgs e)

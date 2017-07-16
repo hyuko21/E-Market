@@ -19,39 +19,11 @@ namespace View
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        private bool agreeTermsOfService;
+
         public RegisterWindow()
         {
             InitializeComponent();
-        }
-
-        private void User_Name_GotFocus(object sender, RoutedEventArgs e)
-        {
-            userName_txt.BorderBrush = Brushes.LightBlue;
-        }
-
-        private void User_Name_LostFocus(object sender, RoutedEventArgs e)
-        {
-            userName_txt.BorderBrush = Brushes.LightGray;
-        }
-
-        private void Password_GotFocus(object sender, RoutedEventArgs e)
-        {
-            password_txt.BorderBrush = Brushes.LightBlue;
-        }
-
-        private void Password_LostFocus(object sender, RoutedEventArgs e)
-        {
-            password_txt.BorderBrush = Brushes.LightGray;
-        }
-
-        private void ConfirmPassword_GotFocus(object sender, RoutedEventArgs e)
-        {
-            confirmPass_txt.BorderBrush = Brushes.LightBlue;
-        }
-
-        private void ConfirmPassword_LostFocus(object sender, RoutedEventArgs e)
-        {
-            confirmPass_txt.BorderBrush = Brushes.LightGray;
         }
 
         private void TermsOfService_MouseEnter(object sender, MouseEventArgs e)
@@ -66,7 +38,17 @@ namespace View
 
         private void TermsOfService_OnClick(object sender, MouseButtonEventArgs e)
         {
+            
+        }
 
+        private void TermsOfService_Checked(object sender, RoutedEventArgs e)
+        {
+            agreeTermsOfService = true;
+        }
+
+        private void TermsOfService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            agreeTermsOfService = false;
         }
 
         private void CancelBtn_OnClick(object sender, MouseButtonEventArgs e)
@@ -77,16 +59,91 @@ namespace View
         private void CancelBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             CancelBtn.Background = Brushes.IndianRed;
+            DialogResult = false;
         }
 
         private void RegisterBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
             RegisterBtn.Background = Brushes.DeepSkyBlue;
+            if (agreeTermsOfService)
+            {
+                DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show(RemaingFields(), "Campos Obrigatórios", MessageBoxButton.OK);
+                RegisterBtn.Background = Brushes.CornflowerBlue;
+            }
         }
 
         private void RegisterBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             RegisterBtn.Background = Brushes.CornflowerBlue;
+        }
+
+        public string RemaingFields()
+        {
+            StringBuilder output = new StringBuilder();
+            if (name_txt.Text == "") {
+                output.Append("- Nome\n");
+            }
+
+            if (lastName_txt.Text == "")
+            {
+                output.Append("- Sobrenome\n");
+            }
+
+            if (phone_txt.Text == "")
+            {
+                output.Append("- Telefone\n");
+            }
+
+            if (state_txt.Text == "")
+            {
+                output.Append("- Estado\n");
+            }
+
+            if (city_txt.Text == "")
+            {
+                output.Append("- Cidade\n");
+            }
+
+            if (district_txt.Text == "")
+            {
+                output.Append("- Bairro\n");
+            }
+
+            if (street_txt.Text == "")
+            {
+                output.Append("- Rua\n");
+            }
+
+            if (houseNum_txt.Text == "")
+            {
+                output.Append("- Nº\n");
+            }
+
+            if (userName_txt.Text == "")
+            {
+                output.Append("- Usuário\n");
+            }
+
+            if (password_txt.Password == "")
+            {
+                output.Append("- Senha\n");
+            }
+
+            if (confirmPass_txt.Password == "")
+            {
+                output.Append("- Senha (Corfimação)\n");
+            }
+
+            if (!agreeTermsOfService)
+            {
+                output.Append("- Termos de serviço\n");
+            }
+
+            return output.ToString();
         }
     }
 }
