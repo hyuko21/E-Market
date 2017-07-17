@@ -19,6 +19,8 @@ namespace View
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        private Business.User bUser = new Business.User();
+        
         private bool agreeTermsOfService;
 
         public RegisterWindow()
@@ -65,13 +67,24 @@ namespace View
         private void RegisterBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
             RegisterBtn.Background = Brushes.DeepSkyBlue;
-            if (agreeTermsOfService)
+
+            string rFields = RemaingFields();
+            string passParity = CheckPassParity(password_txt.Password, confirmPass_txt.Password);
+            if (rFields == "" && passParity == "")
             {
+                var encryptedPass = Business.Security.Encrypt(password_txt.Password);
+                Model.User user = new Model.User { Id = GetId(), Name = userName_txt.Text, Password = encryptedPass, Admin = false };
+                bUser.Insert(user);
                 DialogResult = true;
+            }
+            else if(rFields != "")
+            {
+                MessageBox.Show(rFields, "Campos Obrigatórios", MessageBoxButton.OK);
+                RegisterBtn.Background = Brushes.CornflowerBlue;
             }
             else
             {
-                MessageBox.Show(RemaingFields(), "Campos Obrigatórios", MessageBoxButton.OK);
+                MessageBox.Show(passParity, "Erro!", MessageBoxButton.OK);
                 RegisterBtn.Background = Brushes.CornflowerBlue;
             }
         }
@@ -84,6 +97,7 @@ namespace View
         public string RemaingFields()
         {
             StringBuilder output = new StringBuilder();
+
             if (name_txt.Text == "") {
                 output.Append("- Nome\n");
             }
@@ -144,6 +158,38 @@ namespace View
             }
 
             return output.ToString();
+        }
+
+        public string CheckPassParity(string oriPass, string confPass)
+        {   
+            if(confirmPass_txt.Password != "" || password_txt.Password != "")
+            {
+                if (confirmPass_txt.Password != password_txt.Password) return "- A senhas informadas não são iguais";
+                return "";
+            }
+            return "nef";
+        }
+
+        public int GetId()
+        {
+            bool inUse = false;
+            int id;
+            Random rnd = new Random();
+
+            do
+            {
+                id = rnd.Next(100, 1000);
+                if (bUser.Select().Where(r => r.Id == id).Count() == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    inUse = true;
+                }
+            } while (inUse);
+
+            return id;
         }
     }
 }

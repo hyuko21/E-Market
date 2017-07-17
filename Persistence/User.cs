@@ -8,7 +8,7 @@ namespace Persistence
 {
     public class User
     {
-        private static readonly string file = "content\\database.json";
+        private static readonly string file = "I:\\Documentos\\projeto_poo\\E-Market\\database\\usersReg.json";
 
         public List<Model.User> Select()
         {
