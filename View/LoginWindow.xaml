@@ -33,7 +33,7 @@
         
         <!-- REMIND ME CHECK BOX -->
         <Label Grid.Row="3" Content="Lembre-me" VerticalAlignment="Bottom" HorizontalContentAlignment="Right" Margin="20 0 0 0"/>
-        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="0 5" VerticalAlignment="Bottom" Checked="RemindMe_Checked"/>
+        <CheckBox Name="remindMe_CheckBox" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="0 5" VerticalAlignment="Bottom"/>
         
         <!-- LOG IN BUTTON -->
         <TextBlock Name="EnterBtn" Grid.Row="3" Grid.Column="2" Width="120" Height="30" Text="Entrar" Padding="7" TextAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center" MouseLeftButtonDown="EnterBtn_OnClick" MouseLeftButtonUp="EnterBtn_NonClick" Background="CornflowerBlue" Foreground="White" FontSize="14"/>

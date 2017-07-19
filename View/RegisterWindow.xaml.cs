@@ -73,8 +73,15 @@ namespace View
             if (rFields == "" && passParity == "")
             {
                 var encryptedPass = Business.Security.Encrypt(password_txt.Password);
-                Model.User user = new Model.User { Id = GetId(), Name = userName_txt.Text, Password = encryptedPass, Admin = false };
-                bUser.Insert(user);
+                try
+                {
+                    var user = new Model.User { Id = bUser.GetID(), Name = userName_txt.Text, Password = encryptedPass, Admin = false };
+                    bUser.Insert(user);
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("O nome de usuário informado já está em uso", "Erro!", MessageBoxButton.OK);
+                }
                 DialogResult = true;
             }
             else if(rFields != "")
@@ -168,28 +175,6 @@ namespace View
                 return "";
             }
             return "nef";
-        }
-
-        public int GetId()
-        {
-            bool inUse = false;
-            int id;
-            Random rnd = new Random();
-
-            do
-            {
-                id = rnd.Next(100, 1000);
-                if (bUser.Select().Where(r => r.Id == id).Count() == 0)
-                {
-                    break;
-                }
-                else
-                {
-                    inUse = true;
-                }
-            } while (inUse);
-
-            return id;
         }
     }
 }

@@ -19,6 +19,11 @@ namespace View
     /// </summary>
     public partial class LoginWindow : Window
     {
+        Business.User bUser = new Business.User();
+        Business.AccessLog bAccsLog = new Business.AccessLog();
+
+        Model.System sys = new Model.System();
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -72,6 +77,30 @@ namespace View
         private void EnterBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             EnterBtn.Background = Brushes.CornflowerBlue;
+
+            if (userName_txt.Text == "" || password_txt.Password == "")
+            {
+                userName_txt.BorderBrush = Brushes.Red;
+                password_txt.BorderBrush = Brushes.Red;
+            }
+            else
+            {
+                List<Model.User> lUser = bUser.Select();
+                if(lUser.Count() > 0)
+                {
+                    if(lUser.Where(r => r.Name == userName_txt.Text || r.Password == Business.Security.Encrypt(password_txt.Password)).Count() == 1)
+                    {
+                        var id = lUser.Where(r => r.Name == userName_txt.Text).Single().Id;
+                        var accs = new Model.AccessLog { Id = bAccsLog.GetID(), UserId = id, Date = DateTime.Now };
+                        bAccsLog.Insert(accs);
+                    }
+                    MessageBox.Show("Nome de usuário, ou senha, incorreto", "Erro!", MessageBoxButton.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Usuário não cadastrado", "Erro!", MessageBoxButton.OK);
+                }
+            }
         }
 
         private void NewAccount_OnClick(object sender, MouseButtonEventArgs e)
@@ -81,11 +110,6 @@ namespace View
         }
 
         private void ForgotPass_OnClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void RemindMe_Checked(object sender, RoutedEventArgs e)
         {
 
         }

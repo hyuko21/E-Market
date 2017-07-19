@@ -8,7 +8,7 @@ namespace Model
 {
     public class System
     {
-        private User Current { get; set; }
-        private User LastRecently { get; set; }
+        public User CurrentUser { get; set; }
+        public User LastRecentlyUser { get; set; }
     }
 }

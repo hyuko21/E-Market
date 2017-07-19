@@ -32,5 +32,7 @@ namespace Business
         {
             pUser.Delete(u);
         }
+
+        public int GetID() { return Select().Count(); }
     }
 }
