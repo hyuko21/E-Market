@@ -72,11 +72,6 @@ namespace View
         private void EnterBtn_OnClick(object sender, MouseButtonEventArgs e)
         {
             EnterBtn.Background = Brushes.DeepSkyBlue;
-        }
-
-        private void EnterBtn_NonClick(object sender, MouseButtonEventArgs e)
-        {
-            EnterBtn.Background = Brushes.CornflowerBlue;
 
             if (userName_txt.Text == "" || password_txt.Password == "")
             {
@@ -86,21 +81,33 @@ namespace View
             else
             {
                 List<Model.User> lUser = bUser.Select();
-                if(lUser.Count() > 0)
+                if (lUser.Count() > 0)
                 {
-                    if(lUser.Where(r => r.Name == userName_txt.Text || r.Password == Business.Security.Encrypt(password_txt.Password)).Count() == 1)
+                    if (lUser.Where(r => r.Name == userName_txt.Text && Business.Security.VerifyInput(password_txt.Password, r.Password)).Count() > 0)
                     {
                         var id = lUser.Where(r => r.Name == userName_txt.Text).Single().Id;
                         var accs = new Model.AccessLog { Id = bAccsLog.GetID(), UserId = id, Date = DateTime.Now };
                         bAccsLog.Insert(accs);
+                        MessageBox.Show("Login realizado com sucesso", "Sucesso!", MessageBoxButton.OK);
+                        DialogResult = true;
                     }
-                    MessageBox.Show("Nome de usuário, ou senha, incorreto", "Erro!", MessageBoxButton.OK);
+                    else
+                    {
+                        MessageBox.Show("Nome de usuário, ou senha, incorreto", "Erro!", MessageBoxButton.OK);
+                        EnterBtn.Background = Brushes.CornflowerBlue;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Usuário não cadastrado", "Erro!", MessageBoxButton.OK);
+                    EnterBtn.Background = Brushes.CornflowerBlue;
                 }
             }
+        }
+
+        private void EnterBtn_NonClick(object sender, MouseButtonEventArgs e)
+        {
+            EnterBtn.Background = Brushes.CornflowerBlue;
         }
 
         private void NewAccount_OnClick(object sender, MouseButtonEventArgs e)

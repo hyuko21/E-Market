@@ -77,12 +77,13 @@ namespace View
                 {
                     var user = new Model.User { Id = bUser.GetID(), Name = userName_txt.Text, Password = encryptedPass, Admin = false };
                     bUser.Insert(user);
+                    MessageBox.Show("Usuário cadastrado com sucesso", "Sucesso!", MessageBoxButton.OK);
+                    DialogResult = true;
                 }
                 catch (InvalidOperationException)
                 {
                     MessageBox.Show("O nome de usuário informado já está em uso", "Erro!", MessageBoxButton.OK);
                 }
-                DialogResult = true;
             }
             else if(rFields != "")
             {
