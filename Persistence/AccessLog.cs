@@ -29,5 +29,10 @@ namespace Persistence
         {
             File<Model.AccessLog>.Delete(file, log);
         }
+
+        public void Clear()
+        {
+            File<Model.AccessLog>.Clear(file);
+        }
     }
 }

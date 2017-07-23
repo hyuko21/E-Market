@@ -29,6 +29,11 @@ namespace Business
             pLog.Delete(log);
         }
 
+        public void Clear()
+        {
+            pLog.Clear();
+        }
+
         public int GetID() { return Select().Count(); }
     }
 }

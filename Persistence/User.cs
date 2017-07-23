@@ -29,5 +29,10 @@ namespace Persistence
         {
             File<Model.User>.Delete(file, u);
         }
+
+        public void Clear()
+        {
+            File<Model.User>.Clear(file);
+        }
     }
 }

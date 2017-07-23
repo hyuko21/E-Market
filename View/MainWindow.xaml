@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="E-Market" Height="350" Width="525">
+        Icon="I:/Documentos/projeto_poo/E-Market/img/e.png"
+        Title="E-Market" Height="900" Width="700" FontFamily="Fira Code">
     <Grid>
-        <Button Width="100" Content="login" Height="50" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- FOOTER -->
+        <Rectangle Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Fill="Black" Width="600" Height="1" Margin="0 0 0 80"/>
+        <Label Grid.Row="2" Grid.ColumnSpan="3" Content="© E-Market 2017. All Rights Reserved." HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="DimGray" Cursor="Arrow" Margin="0 20"/>
+
+        <!-- PAGE FRAME -->
+        <Frame x:Name="Main" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Width="690" HorizontalAlignment="Center" NavigationUIVisibility="Hidden" Margin="0 0 0 10"/>
     </Grid>
 </Window>

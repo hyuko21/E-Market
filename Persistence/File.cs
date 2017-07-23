@@ -39,9 +39,9 @@ namespace Persistence
             }
         }
 
-        public static List<T> Select(string arquivo)
+        public static List<T> Select(string file)
         {
-            return Open(arquivo);
+            return Open(file);
         }
 
         public static void Insert(string file, T obj)
@@ -66,6 +66,11 @@ namespace Persistence
             T x = objs.Where(r => r.Id == obj.Id).Single();
             objs.Remove(x);
             Save(file, objs);
+        }
+
+        public static void Clear(string file)
+        {
+            Select(file).RemoveAll(r => r.Id >= 0);
         }
     }
 }

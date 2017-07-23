@@ -19,15 +19,16 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Business.System bSys = new Business.System();
+        private Model.System mSys = new Model.System();
+
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWindow lw = new LoginWindow();
-            lw.ShowDialog();
+            mSys = bSys.Select().Single();
+            bSys.Initialize(mSys);
+            bSys.Update(mSys);
+            Main.NavigationService.Navigate(new HomePage());
         }
     }
 }

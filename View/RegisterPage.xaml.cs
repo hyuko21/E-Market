@@ -10,20 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace View
 {
     /// <summary>
-    /// Interaction logic for RegisterWindow.xaml
+    /// Interaction logic for RegisterPage.xaml
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class RegisterPage : Page
     {
         private Business.User bUser = new Business.User();
-        
+
         private bool agreeTermsOfService;
 
-        public RegisterWindow()
+        public RegisterPage()
         {
             InitializeComponent();
         }
@@ -40,7 +41,7 @@ namespace View
 
         private void TermsOfService_OnClick(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void TermsOfService_Checked(object sender, RoutedEventArgs e)
@@ -61,7 +62,7 @@ namespace View
         private void CancelBtn_NonClick(object sender, MouseButtonEventArgs e)
         {
             CancelBtn.Background = Brushes.IndianRed;
-            DialogResult = false;
+            NavigationService.GoBack();
         }
 
         private void RegisterBtn_OnClick(object sender, MouseButtonEventArgs e)
@@ -77,22 +78,22 @@ namespace View
                 {
                     var user = new Model.User { Id = bUser.GetID(), Name = userName_txt.Text, Password = encryptedPass, Admin = false };
                     bUser.Insert(user);
-                    MessageBox.Show("Usuário cadastrado com sucesso", "Sucesso!", MessageBoxButton.OK);
-                    DialogResult = true;
+                    MessageBox.Show("Usuário cadastrado com sucesso", "Sucesso", MessageBoxButton.OK);
+                    NavigationService.Navigate(new LoginPage());
                 }
                 catch (InvalidOperationException)
                 {
-                    MessageBox.Show("O nome de usuário informado já está em uso", "Erro!", MessageBoxButton.OK);
+                    MessageBox.Show("O nome de usuário informado já está em uso", "Erro", MessageBoxButton.OK);
                 }
             }
-            else if(rFields != "")
+            else if (rFields != "")
             {
                 MessageBox.Show(rFields, "Campos Obrigatórios", MessageBoxButton.OK);
                 RegisterBtn.Background = Brushes.CornflowerBlue;
             }
             else
             {
-                MessageBox.Show(passParity, "Erro!", MessageBoxButton.OK);
+                MessageBox.Show(passParity, "Erro", MessageBoxButton.OK);
                 RegisterBtn.Background = Brushes.CornflowerBlue;
             }
         }
@@ -102,17 +103,53 @@ namespace View
             RegisterBtn.Background = Brushes.CornflowerBlue;
         }
 
+        private void LoginBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            loginBtn.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void LoginBtn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            loginBtn.TextDecorations = null;
+        }
+
+        private void RegisterBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            registerBtn.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void RegisterBtn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            registerBtn.TextDecorations = null;
+        }
+
+        private void LoginBtn_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new LoginPage());
+        }
+
+        private void WCTxt_MouseEnter(object sender, MouseEventArgs e)
+        {
+            wMessageTxt.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void WCTxt_MouseLeave(object sender, MouseEventArgs e)
+        {
+            wMessageTxt.TextDecorations = null;
+        }
+
+        private void WCTxt_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new HomePage());
+        }
+
         public string RemaingFields()
         {
             StringBuilder output = new StringBuilder();
 
-            if (name_txt.Text == "") {
-                output.Append("- Nome\n");
-            }
-
-            if (lastName_txt.Text == "")
+            if (name_txt.Text == "")
             {
-                output.Append("- Sobrenome\n");
+                output.Append("- Nome completo\n");
             }
 
             if (phone_txt.Text == "")
@@ -169,8 +206,8 @@ namespace View
         }
 
         public string CheckPassParity(string oriPass, string confPass)
-        {   
-            if(confirmPass_txt.Password != "" || password_txt.Password != "")
+        {
+            if (confirmPass_txt.Password != "" || password_txt.Password != "")
             {
                 if (confirmPass_txt.Password != password_txt.Password) return "- A senhas informadas não são iguais";
                 return "";

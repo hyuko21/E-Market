@@ -33,6 +33,11 @@ namespace Business
             pUser.Delete(u);
         }
 
+        public void Clear()
+        {
+            pUser.Clear();
+        }
+
         public int GetID() { return Select().Count(); }
     }
 }
