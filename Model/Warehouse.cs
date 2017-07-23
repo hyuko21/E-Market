@@ -35,13 +35,13 @@ namespace Model
             new Product() { Name = "Suco 200ml", Amount = 210, Category = "Bebidas", Maker = "Kapo", Price = 1.25m },
             new Product() { Name = "Lasanha 600g", Amount = 150, Category = "Massas", Maker = "Sadia", Price = 9.98m },
             new Product() { Name = "Mortadela 1kg", Amount = 120, Category = "Carne", Maker = "Perdigão", Price = 5.69m },
-            new Product() { Name = "Galinha Congelada 1kg", Amount = 150, Category = "Carne", Maker = "Somave", Price = 16.49m },
-            new Product() { Name = "Café 250g", Amount = 160, Category = "Grãos", Maker = "Santa Clara", Price = 4.79m },
-            new Product() { Name = "Pack Sabonete 6un 90g", Amount = 150, Category = "Higiene Pessoal", Maker = "Even", Price = 5.59m },
+            new Product() { Name = "Presunto de Peru 1kg", Amount = 150, Category = "Carne", Maker = "Sadia", Price = 16.49m },
+            new Product() { Name = "Coxinha da Asa 1kg", Amount = 160, Category = "Carne", Maker = "Perdigão", Price = 11.89m },
+            new Product() { Name = "Margarina 500g", Amount = 150, Category = "Derivados", Maker = "Deline", Price = 2.79m },
             new Product() { Name = "Papel Higiênico Dual f/d 30m", Amount = 110, Category = "Higiene Pessoal", Maker = "Mili", Price = 11.49m },
-            new Product() { Name = "Fralda Hiper", Amount = 170, Category = "Higiene Pessoal", Maker = "Baby Roger", Price = 33.90m },
-            new Product() { Name = "Biscoito Integral 120g", Amount = 220, Category = "Biscoitos", Maker = "Nesfit", Price = 1.99m },
-            new Product() { Name = "Chocolate 45g", Amount = 150, Category = "Doces", Maker = "Kit Kat", Price = 1.99m }
+            new Product() { Name = "Bebida Láctea 1L", Amount = 170, Category = "Bebidas", Maker = "Batclan", Price = 2.99m },
+            new Product() { Name = "Requijão 200g", Amount = 220, Category = "Derivados", Maker = "Clan", Price = 4.59m },
+            new Product() { Name = "Polpa de Frutas Acerola 400g", Amount = 150, Category = "Frios", Maker = "Nordeste Fruit", Price = 2.89m }
         };
 
         public List<Product> GetProducts()
